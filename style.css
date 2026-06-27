@@ -1,0 +1,595 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a1a; 
+    overflow: hidden; 
+    font-family: sans-serif;
+    transition: background-color 0.5s ease;
+}
+
+/* --- THE STAGE --- */
+.parallax-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.layer {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none; 
+}
+
+.bg-layer {
+    z-index: 1;
+    top: 0;
+    height: 100vh; 
+    object-fit: cover; 
+}
+
+.cloud-layer {
+    z-index: 3;
+    top: -10vw; 
+    height: 90%;
+    width: 105%; 
+    left: -2%; 
+    animation: cloud-drift 40s linear infinite alternate;
+}
+
+.water-layer {
+    z-index: 4;
+    bottom: -10vw; 
+    animation: wave-bob 8s ease-in-out infinite alternate;
+    transition: bottom 1.5s ease-in-out;
+}
+
+/* --- THE SUN/MOON (DARK MODE TOGGLE) --- */
+.sun-button {
+    position: absolute;
+    top: 10%;
+    left: 8%;
+    width: 15vw;
+    min-width: 100px;
+    max-width: 250px;
+    z-index: 2; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.sun-button img {
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+}
+
+.sun-button:hover {
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 20px rgba(200, 50, 50, 0.8));
+}
+
+/* --- THE INTRODUCTION SIGNATURE --- */
+.intro-banner {
+    position: absolute;
+    bottom: 5%;
+    left: 3%;
+    height: 40vh;
+    max-height: 350px;
+    z-index: 10;
+    filter: drop-shadow(0px 4px 12px rgba(0,0,0,0.3));
+    animation: signature-bob 6s ease-in-out infinite alternate;
+}
+
+/* --- THE HANGING MENU --- */
+.hanging-menu {
+    position: absolute;
+    top: 5%;
+    right: 2%; 
+    display: flex;
+    align-items: flex-start; 
+    gap: 15px; 
+    z-index: 10;
+}
+
+.menu-item {
+    position: relative; 
+    display: block;
+}
+
+.menu-item:nth-child(1) { margin-top: 50px; width: 5vw; }  /* FAQ */
+.menu-item:nth-child(2) { margin-top: -5px; width: 6vw; }  /* Links */
+.menu-item:nth-child(3) { margin-top: 50px; width: 5vw; }  /* Works */
+.menu-item:nth-child(4) { margin-top: -5px; width: 5vw; }  /* About */
+
+.menu-item img {
+    width: 100%;
+    height: auto; 
+    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.3)); 
+    transition: transform 0.3s ease, opacity 1.5s ease-in-out;
+}
+
+.menu-item .night-asset {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.menu-item:hover img {
+    transform: translateY(-10px); 
+    filter: drop-shadow(0px 8px 15px rgba(0,0,0,0.5));
+}
+
+/* --- THE ANIMATIONS --- */
+@keyframes cloud-drift {
+    0% { transform: translateX(-2%); }
+    100% { transform: translateX(2%); }
+}
+
+@keyframes wave-bob {
+    0% { transform: translateY(2%); }
+    100% { transform: translateY(-2%); }
+}
+
+@keyframes signature-bob {
+    0% { transform: translateY(10px) rotate(-1deg); }
+    100% { transform: translateY(-10px) rotate(1deg); }
+}
+
+/* =========================================
+   THE DARK MODE CROSSFADE MAGIC 
+   ========================================= */
+
+.day-asset, .night-asset {
+    transition: opacity 1.5s ease-in-out, bottom 1.5s ease-in-out, top 1.5s ease-in-out; 
+}
+
+.night-asset {
+    opacity: 0;
+}
+
+body.dark-mode {
+    background-color: #0a0a0a;
+}
+
+body.dark-mode .night-asset {
+    opacity: 1;
+}
+
+body.dark-mode .day-asset {
+    opacity: 0;
+}
+
+body.dark-mode .sun-button:hover {
+    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.8));
+}
+
+body.dark-mode .water-layer {
+    bottom: -6vw; 
+}
+
+body.dark-mode .cloud-layer {
+    top: -12vw; 
+}
+
+body.dark-mode .scroll-text-content {
+    color: #fdfbf7; 
+}
+
+body.dark-mode .subtitle {
+    color: #cecece; 
+}
+
+body.dark-mode .info-grid h3 {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3); 
+}
+
+body.dark-mode .scroll-text-content {
+    scrollbar-color: rgba(255, 255, 255, 0.4) transparent; 
+}
+body.dark-mode .scroll-text-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.4); 
+}
+body.dark-mode .scroll-text-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.8); 
+}
+
+/* =========================================
+   THE UKIYO-E SCROLL MODAL 
+   ========================================= */
+
+.modal-overlay {
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2); 
+    z-index: 100; 
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.2s ease; 
+}
+
+.modal-overlay.show {
+    display: flex;
+    opacity: 1;
+}
+
+.scroll-window {
+    position: relative; 
+    width: 70vw; 
+    max-width: 900px;
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: tab-pop 0.2s ease-out; 
+}
+
+.scroll-bg {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0px 15px 30px rgba(0,0,0,0.6));
+}
+
+.scroll-text-content {
+    position: absolute;
+    top: 25%; 
+    left: 8%;
+    width: 84%;
+    height: 70%;
+    overflow-y: hidden; 
+    color: #1a1a1a; 
+    scrollbar-width: thin;
+    scrollbar-color: rgba(26, 26, 26, 0.4) transparent; 
+}
+
+.scroll-text-content::-webkit-scrollbar {
+    width: 6px; 
+}
+
+.scroll-text-content::-webkit-scrollbar-track {
+    background: transparent; 
+}
+
+.scroll-text-content::-webkit-scrollbar-thumb {
+    background: rgba(26, 26, 26, 0.4); 
+    border-radius: 10px; 
+}
+
+.scroll-text-content::-webkit-scrollbar-thumb:hover {
+    background: rgba(26, 26, 26, 0.8); 
+}
+
+/* --- The Typography Styling --- */
+.profile-header {
+    width: 65%; 
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.profile-titles h2 {
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #444; 
+}
+
+.intro-paragraph {
+    width: 65%; 
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-weight: bold;
+    margin-bottom: 35px; 
+}
+
+.info-grid {
+    width: 100%; 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 15px;
+}
+
+.info-grid h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+    border-bottom: 2px solid rgba(0,0,0,0.2); 
+    padding-bottom: 4px;
+    width: 80%;
+}
+
+.info-grid ul {
+    list-style-position: inside;
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.info-grid p {
+    font-weight: bold;
+    line-height: 1.5;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5%; 
+    left: 5%; 
+    background: transparent;
+    border: none; 
+    cursor: pointer;
+    z-index: 101;
+    transition: transform 0.2s ease, color 0.3s ease;
+    font-size: 3.5rem; 
+    line-height: 1;
+    font-weight: bold;
+    color: #1a1a1a; 
+    font-family: sans-serif;
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.3); 
+}
+
+body.dark-mode .close-btn {
+    color: #ffffff; 
+}
+
+.close-btn:hover {
+    transform: scale(1.2) rotate(90deg); 
+    color: #d63031; 
+}
+
+/* =========================================
+   LINKS BOARD
+   ========================================= */
+
+.links-board {
+    position: relative;
+    background-image: url('links-background-day.png');
+    background-size: cover;
+    background-position: center;
+    padding: 8vh 5vw; 
+    border-radius: 12px; 
+    box-shadow: 0px 20px 50px rgba(0,0,0,0.8);
+    animation: tab-pop 0.2s ease-out; 
+    max-width: 90vw;
+}
+
+.links-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4vw; 
+}
+
+.link-banner {
+    display: block;
+    height: auto; 
+    transition: transform 0.3s ease, filter 0.3s ease;
+    align-self: center; 
+}
+
+.link-banner:nth-child(1) { width: 14vw; max-width: 180px; } 
+.link-banner:nth-child(2) { width: 12vw; max-width: 127px; } 
+.link-banner:nth-child(3) { width: 14vw; max-width: 183px; } 
+
+.link-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+    mix-blend-mode: multiply; 
+    filter: drop-shadow(0px 8px 12px rgba(0,0,0,0.3));
+}
+
+.link-banner:hover {
+    transform: translateY(-15px); 
+    filter: drop-shadow(0px 15px 25px rgba(0,0,0,0.6));
+}
+
+body.dark-mode .links-board {
+    background-image: url('links-background-night.png'); 
+}
+
+/* 2. Turn the image letters/logos white and hide their backgrounds */
+body.dark-mode .link-banner img {
+    filter: invert(1); /* Turns the black ink to white, and the white paper to black */
+    mix-blend-mode: screen; /* Hides the new black background, leaving only the white ink */
+}
+
+/* 3. Turn the "X" close button white so it stands out on the maroon paper */
+body.dark-mode .close-links {
+    color: #ffffff; 
+}
+
+.faq-board {
+    width: 85vw;
+    max-width: 800px;
+    max-height: 85vh;
+    overflow-y: auto; /* Adds a scrollbar if the questions get too long */
+    color: #1a1a1a;
+}
+
+.faq-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.accordion-item {
+    border-bottom: 2px solid rgba(0,0,0,0.2);
+}
+
+.accordion-header {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 15px 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: inherit;
+    font-family: inherit;
+    transition: color 0.3s ease;
+}
+
+.accordion-header:hover {
+    color: #d63031;
+}
+
+.arrow {
+    font-size: 1rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    padding: 0 10px;
+}
+
+.accordion-content p {
+    padding-bottom: 15px;
+    line-height: 1.6;
+    font-weight: bold;
+}
+
+/* When the accordion is clicked, these classes activate */
+.accordion-item.active .arrow {
+    transform: rotate(180deg);
+}
+
+.email-link {
+    color: #d63031;
+    text-decoration: underline;
+}
+
+/* --- Dark Mode Adjustments --- */
+body.dark-mode .faq-board {
+    color: #ffffff;
+}
+
+body.dark-mode .accordion-item {
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+body.dark-mode .accordion-header:hover {
+    color: #ff7675;
+}
+
+body.dark-mode .email-link {
+    color: #ff7675;
+}
+
+@keyframes tab-pop {
+    0% { transform: scale(0.95); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+/* =========================================
+   MOBILE & HALF-WINDOW RESPONSIVENESS
+   ========================================= */
+
+@media (max-width: 768px) {
+    
+    .scroll-window {
+        width: 95vw; 
+    }
+
+    .cloud-layer {
+        width: 110%; 
+        left: -1%; 
+        height: auto; 
+        top: 0%;      
+    }
+
+    body.dark-mode .cloud-layer {
+        top: 0%; 
+    }
+
+    .water-layer {
+        width: 130%;
+        left: -20%;
+        bottom: 0%;   
+    }
+
+    body.dark-mode .water-layer {
+        bottom: 5%;   
+    }
+
+    .intro-banner {
+        height: 35vh;
+        bottom: 15%;
+        left: 5%;
+    }
+
+    .sun-button {
+        width: 80px;
+        top: 5%;
+        left: 5%;
+    }
+
+    .hanging-menu {
+        top: 3%;
+        right: 3%;
+        gap: 8px; 
+    }
+
+    .menu-item:nth-child(1) { margin-top: 50px; width: 55px; } 
+    .menu-item:nth-child(2) { margin-top: 0px;  width: 60px; } 
+    .menu-item:nth-child(3) { margin-top: 50px; width: 55px; } 
+    .menu-item:nth-child(4) { margin-top: 0px;  width: 55px; } 
+    
+    .scroll-text-content {
+        width: 62%; 
+        overflow-y: auto;
+    }
+
+    .profile-header, .intro-paragraph {
+        width: 100%; 
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    .links-board {
+        padding: 2vh 2vw; 
+    }
+
+    .links-container {
+        flex-direction: column; 
+        gap: 2vh;
+    }
+    
+    .link-banner {
+        width: 40vw; 
+        height: auto; 
+        align-self: center; 
+    }
+}

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kgo's Imagination</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="parallax-container">
+        <img src="background-day.png" class="layer bg-layer day-asset" alt="Mount Fuji">
+        <img src="background-asset-night.png" class="layer bg-layer night-asset" alt="Volcano">
+        <img src="cloud-asset-day.png" class="layer cloud-layer day-asset" alt="Swirling Clouds">
+        <img src="cloud-asset-night.png" class="layer cloud-layer night-asset" alt="Night Clouds">
+
+        <img src="water-asset-day.png" class="layer water-layer day-asset" alt="Ocean Waves">
+        <img src="sea-night-asset.png" class="layer water-layer night-asset" alt="Night Waves">
+        
+        <button id="theme-toggle" class="sun-button">
+            <img src="sun-asset-day.png" class="day-asset" alt="Toggle Theme">
+            <img src="moon-asset.png" class="night-asset" alt="Moon">
+        </button>
+
+        <img src="introduction-font.png" class="intro-banner day-asset" alt="Hi I'm Keigo">
+        <img src="introduction-font-night.png" class="intro-banner night-asset" alt="Hi I'm Keigo Night">
+
+        <nav class="hanging-menu">
+            <a href="#" class="menu-item" id="faq-btn">
+                <img src="faq-font-day.png" class="day-asset" alt="FAQ">
+                <img src="font-faq-night.png" class="night-asset" alt="FAQ Night">
+            </a>
+            <a href="#" class="menu-item" id="links-btn">
+                <img src="links-font-day.png" class="day-asset" alt="Links">
+                <img src="font-links-night.png" class="night-asset" alt="Links Night">
+            </a>
+            <a href="#" class="menu-item">
+                <img src="works-font-day.png" class="day-asset" alt="Works">
+                <img src="font-works-night.png" class="night-asset" alt="Works Night">
+            </a>
+            <a href="#" class="menu-item" id="about-btn">
+                <img src="about-font-day.png" class="day-asset" alt="About">
+                <img src="font-about-night.png" class="night-asset" alt="About Night">
+            </a>
+        </nav>
+    </div>
+
+   <div id="about-modal" class="modal-overlay">
+        <div class="modal-content scroll-window">
+            
+            <div style="position: relative; width: 100%;">
+                <img src="about-info-day.png" class="scroll-bg day-asset" alt="Paper Scroll">
+                <img src="about-info-night.png" class="scroll-bg night-asset" alt="Night Paper Scroll" style="position: absolute; top: 0; left: 0;">
+            </div>
+            
+            <button id="close-modal" class="close-btn">&times;</button>
+
+            <div class="scroll-text-content">
+                
+                <div class="profile-header">
+                    <div class="profile-titles">
+                        <h2>KEIGO ADACHI 足立圭悟</h2>
+                        <p class="subtitle">Web Developer & Backend Programmer</p>
+                    </div>
+                </div>
+
+                <div class="profile-text">
+                    <p class="intro-paragraph">Hi, I'm Kei. I enjoy creating things that spark my interest, from designing websites to developing games, depending on the ideas that come to mind each day.</p>
+                    
+                    <div class="info-grid">
+                        <div>
+                            <h3>EDUCATION</h3>
+                            <p>University of Maine at Presque Isle - Liberal Studies</p>
+                        </div>
+                        
+                        <div>
+                            <h3>OTHER INTERESTS</h3>
+                            <ul>
+                                <li>Game Development</li>
+                                <li>Writing a Light Novel</li>
+                                <li>Music and Stuff</li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h3>LANGUAGE PROFICIENCY</h3>
+                            <ul>
+                                <li>Native in Tagalog</li>
+                                <li>Fluent in English</li>
+                                <li>Conversational Japanese</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+    <div id="links-modal" class="modal-overlay">
+        <div class="links-board">
+            
+            <button class="close-btn close-links">&times;</button>
+            
+            <div class="links-container">
+                <a href="https://www.instagram.com/letkeido/" target="_blank" class="link-banner">
+                    <img src="link-insta-day.png" alt="Instagram">
+                </a>
+                
+                <a href="https://github.com/Kgo-droid" target="_blank" class="link-banner">
+                    <img src="links-git-day.png" alt="GitHub">
+                </a>
+                
+                <a href="https://www.linkedin.com/in/keigo-adachi-a162812a0/" target="_blank" class="link-banner">
+                    <img src="links-linked-day.png" alt="LinkedIn">
+                </a>    
+            </div>
+        </div>
+    </div> 
+
+    <div id="faq-modal" class="modal-overlay">
+        <div class="links-board faq-board">
+            
+            <button class="close-btn close-links" id="close-faq">&times;</button>
+            
+            <h2 class="faq-title">FAQ</h2>
+
+            <div class="faq-container">
+                
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        What software do you use? <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Mac Os i use javascript, html, css and python.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Are you commission open? <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>For commission work, please contact me via my <a href="mailto:bendania2004@gmail.com" class="email-link">work email</a>.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        What inspired you to make this website? <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>I visited a Japanese hospital and saw one of those Ukiyo-e paintings so I just thought what if I made a website with this theme and thus here we are.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Any history of working as a programmer? <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Yes, I used to work for this company called Wazile inc. in Philippines. Basically worked as a front end engineer. The team leader thinks of the idea while we try to make the design the way the team leader envision it for the customer.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        What's your goal? <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Currently? I wanna make games, maybe more websites, and basically expand my portfolio. And make stuff that peaked my interest.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">
+                        Lebron vs Jordan? <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="accordion-content">
+                        <p>Stephen Curry!</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

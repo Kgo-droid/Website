@@ -95,3 +95,113 @@ accordionHeaders.forEach(header => {
         }
     });
 });
+
+const dayMusic = new Audio('Hakata_Bay_Vigil.mp3');
+dayMusic.loop = true; 
+dayMusic.volume = 0.4;
+
+const dayHover = new Audio('koto-hit.mp3');
+dayHover.volume = 0.5; 
+dayHover.preload = 'auto'; // Preloaded to kill latency
+
+const dayClick = new Audio('traditional-stamp.mp3');
+dayClick.volume = 0.7; 
+dayClick.preload = 'auto';
+
+// 2. Load the Night Audio
+const nightMusic = new Audio('Final_Bell.mp3');
+nightMusic.loop = true; 
+nightMusic.volume = 0.4;
+
+const nightHover = new Audio('koto-night.mp3');
+nightHover.volume = 0.5; 
+nightHover.preload = 'auto';
+
+const nightClick = new Audio('drum-night.mp3');
+nightClick.volume = 0.7; 
+nightClick.preload = 'auto';
+
+// 3. Load the Ambient Waves (Plays for both day and night!)
+const bgWaves = new Audio('waves.mp3');
+bgWaves.loop = true; 
+bgWaves.volume = 0.15;
+
+// 4. Global State
+let isMuted = true;
+const soundToggleBtn = document.getElementById('sound-toggle');
+const soundIconImg = document.getElementById('sound-icon-display');
+const themeToggleBtn = document.getElementById('theme-toggle'); // Grabbing your sun/moon button
+
+// 5. The Play/Mute Button Logic
+soundToggleBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+
+    if (isMuted) {
+        dayMusic.pause();
+        nightMusic.pause();
+        bgWaves.pause();
+        soundIconImg.src = "mute.png";
+        soundIconImg.alt = "Muted";
+    } else {
+        bgWaves.play();
+        // Check which theme is active right now to play the right BGM
+        if (document.body.classList.contains('dark-mode')) {
+            nightMusic.play();
+        } else {
+            dayMusic.play();
+        }
+        soundIconImg.src = "sound.png";
+        soundIconImg.alt = "Playing";
+    }
+});
+
+// 6. Theme Swap Audio Logic (Runs when you click the Sun/Moon)
+themeToggleBtn.addEventListener('click', () => {
+    // Only swap the music if the site is currently unmuted
+    if (!isMuted) {
+        // We give the browser 50 milliseconds to visually change the theme before swapping the audio
+        setTimeout(() => {
+            if (document.body.classList.contains('dark-mode')) {
+                dayMusic.pause();
+                nightMusic.currentTime = 0; // Start night track from the beginning
+                nightMusic.play();
+            } else {
+                nightMusic.pause();
+                dayMusic.currentTime = 0; // Start day track from the beginning
+                dayMusic.play();
+            }
+        }, 50);
+    }
+});
+
+// 7. Attach SFX to all buttons and links dynamically
+const allInteractives = document.querySelectorAll('button, a');
+
+allInteractives.forEach(element => {
+    
+    // Hover Sound Logic
+    element.addEventListener('mouseenter', () => {
+        if (!isMuted) {
+            if (document.body.classList.contains('dark-mode')) {
+                nightHover.currentTime = 0;
+                nightHover.play().catch(e => console.log("Suppressed"));
+            } else {
+                dayHover.currentTime = 0;
+                dayHover.play().catch(e => console.log("Suppressed"));
+            }
+        }
+    });
+
+    // Click Sound Logic
+    element.addEventListener('click', () => {
+        if (!isMuted) {
+            if (document.body.classList.contains('dark-mode')) {
+                nightClick.currentTime = 0;
+                nightClick.play().catch(e => console.log("Suppressed"));
+            } else {
+                dayClick.currentTime = 0;
+                dayClick.play().catch(e => console.log("Suppressed"));
+            }
+        }
+    });
+});

@@ -506,6 +506,53 @@ body.dark-mode .email-link {
     color: #ff7675;
 }
 
+.sound-button {
+    position: fixed;
+    top: 20px;
+    left: 20px; 
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    border: 2px solid #1a1a1a;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+}
+
+.sound-button:hover {
+    background: #d63031;
+    color: white;
+}
+
+/* Dark mode adjustment for the button box */
+body.dark-mode .sound-button {
+    background: rgba(0, 0, 0, 0.6);
+    border-color: white;
+    color: white;
+}
+
+body.dark-mode .sound-button:hover {
+    background: #ff7675;
+}
+
+/* =========================================
+   SUMI-E ICON STYLING & MAGIC INVERT
+   ========================================= */
+#sound-icon-display {
+    max-height: 20px; 
+    width: auto;
+    vertical-align: middle; 
+    transition: filter 0.3s ease; 
+}
+
+/* When Dark Mode is active, make the black sumi-e brushstrokes white! */
+body.dark-mode #sound-icon-display {
+    filter: invert(1);
+}
+
 @keyframes tab-pop {
     0% { transform: scale(0.95); opacity: 0; }
     100% { transform: scale(1); opacity: 1; }

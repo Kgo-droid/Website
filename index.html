@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kgo's Imagination</title>
     <link rel="stylesheet" href="style.css">
+    
+    <link rel="preload" href="background-day.png" as="image">
+    <link rel="preload" href="sun-asset-day.png" as="image">
+    <link rel="preload" href="mute.png" as="image">
 </head>
 <body>
     
@@ -52,8 +56,8 @@
         <div class="modal-content scroll-window">
             
             <div style="position: relative; width: 100%;">
-                <img src="about-info-day.png" class="scroll-bg day-asset" alt="Paper Scroll">
-                <img src="about-info-night.png" class="scroll-bg night-asset" alt="Night Paper Scroll" style="position: absolute; top: 0; left: 0;">
+                <img src="about-info-day.png" class="scroll-bg day-asset" alt="Paper Scroll" loading="lazy">
+                <img src="about-info-night.png" class="scroll-bg night-asset" alt="Night Paper Scroll" style="position: absolute; top: 0; left: 0;" loading="lazy">
             </div>
             
             <button id="close-modal" class="close-btn">&times;</button>
@@ -106,15 +110,15 @@
             
             <div class="links-container">
                 <a href="https://www.instagram.com/letkeido/" target="_blank" class="link-banner">
-                    <img src="link-insta-day.png" alt="Instagram">
+                    <img src="link-insta-day.png" alt="Instagram" loading="lazy">
                 </a>
                 
                 <a href="https://github.com/Kgo-droid" target="_blank" class="link-banner">
-                    <img src="links-git-day.png" alt="GitHub">
+                    <img src="links-git-day.png" alt="GitHub" loading="lazy">
                 </a>
                 
                 <a href="https://www.linkedin.com/in/keigo-adachi-a162812a0/" target="_blank" class="link-banner">
-                    <img src="links-linked-day.png" alt="LinkedIn">
+                    <img src="links-linked-day.png" alt="LinkedIn" loading="lazy">
                 </a>    
             </div>
         </div>
